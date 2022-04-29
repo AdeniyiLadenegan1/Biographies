@@ -1,0 +1,41 @@
+<h6>This is my dashboard</h6>
+<h3>Welcome {{ name }}</h3>
+<p>See your Events here</p>
+{{#if biographies}}
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Heading</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Head</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each biographies}}
+            <tr>
+                <td><a href="/biographies/{{_id}}">{{heading}}</a></td>
+                <td>{{ formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                <td><span class="dash-status">{{status}}</span></td>
+                <td>
+                    
+                    <a href="/biographies/edit/{{_id}}" class="btn btn-float"> <i class="fas fa-edit"></i></a>
+                    <form action="/biographies/{{_id}}" method = "POST" id ="delete-form">
+                    <input type="hidden" name = "_method" value="DELETE">
+                    <button class ="btn black" type ="submit" >
+                        <i class="fas fa-trash"></i>
+                    </button></form>
+
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+
+
+<p>No stories yet</p>
+
+{{/if}}
